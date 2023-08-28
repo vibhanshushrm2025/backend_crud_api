@@ -10,7 +10,7 @@ export const register = async (req, res, next) => {
     const user = await mdl.findOne({ email: email }); // first of all , check whether the user is present or not by searching through emails
     if (user) {
       // using the default express provided error handler
-      return next(new errorHandlingClass("user already exits", 404, false));
+      return next(new errorHandlingClass("user already exits", 201, false));
       // return res.status(404).json({
       //   success: false,
       //   message: "user already exits",
@@ -38,7 +38,7 @@ export const login = async (req, res, next) => {
     // the fields along with the one whose select is true
     console.log(user);
     if (!user)
-      return next(new errorHandlingClass("user doesn't exist", 404, false));
+      return next(new errorHandlingClass("user doesn't exist", 201, false));
     // return res.status(404).json({
     //   success: false,
     //   message: "user doesn't exist",
@@ -51,7 +51,7 @@ export const login = async (req, res, next) => {
       setCookie(user, 201, "LoggedIn successfully", true, res);
     } else {
       return next(
-        new errorHandlingClass("Password didn't matched", 404, false)
+        new errorHandlingClass("Password didn't matched", 201, false)
       );
       // res.status(404).json({
       //   success: false,

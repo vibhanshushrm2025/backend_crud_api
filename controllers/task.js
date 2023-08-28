@@ -29,7 +29,7 @@ export const updateTask = async (req, res, next) => {
     // This is how to update the task
     const task = await Task.findById(req.params.id);
     if (!task)
-      return next(new errorHandlingClass("Task Not Found", 404, false));
+      return next(new errorHandlingClass("Task Not Found", 201, false));
     task.isCompleted = !task.isCompleted;
     await task.save();
     next(new errorHandlingClass("Task Updated", 201, true)); // this line is same as the below commented code
@@ -46,7 +46,7 @@ export const deleteTask = async (req, res, next) => {
     // This is how to delete the task
     const task = await Task.findById(req.params.id);
     if (!task)
-      return next(new errorHandlingClass("Task Not Found", 404, false)); // it is neccessary to put return here , otherwise it will go forward
+      return next(new errorHandlingClass("Task Not Found", 201, false)); // it is neccessary to put return here , otherwise it will go forward
     await task.deleteOne();
     next(new errorHandlingClass("Task Deleted", 201, true));
     // res.json({

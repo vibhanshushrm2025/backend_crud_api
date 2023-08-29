@@ -4,7 +4,7 @@ import errorHandlingClass from "./error.js";
 export const isLoggedIn = async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) {
-    return next(new errorHandlingClass("Please Login First",404,false))
+    return next(new errorHandlingClass("Please Login First",201,false))
   } else { // always put this else part , otherwise , when you try to loggin after the getMyprofile (without loggin ) , server will crash
     console.log(process.env.JWT_SECRET);
     const decoded = jwt.verify(token, process.env.JWT_SECRET);

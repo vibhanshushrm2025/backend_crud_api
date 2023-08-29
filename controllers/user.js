@@ -75,7 +75,10 @@ export const getUserDetail =  (req, res, next) => {
   res.send({ id: id });
 };
 export const myProfile =  (req, res, next) => {
-  res.send(req.user);
+  res.send({
+    success:"true",
+    user:req.user
+  });
 };
 export const logout =  (req, res, next) => {
   res.cookie("token", null, {

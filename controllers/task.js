@@ -11,7 +11,10 @@ export const newTask = async (req, res) => {
     }); // This can be done in the following 2 lines  also
     // const task = new Task(Json)
     // await task.save();
-    res.send(task);
+    res.send({
+      success:true,
+      task
+    });
   } catch (error) {
     next(error);
   }
@@ -19,7 +22,10 @@ export const newTask = async (req, res) => {
 export const myTasks = async (req, res) => {
   try {
     const ans = await Task.find({ userId: req.user._id });
-    res.send(ans);
+    res.send({
+      success:true,
+      ans
+    });
   } catch (error) {
     next(error);
   }
